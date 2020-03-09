@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Create owner</title>
+    <title>Add owner</title>
 </head>
 <body>
 <form action="#" th:action="@{/owner-create}" th:object="${owner}" method="post">
@@ -11,8 +11,8 @@
     <label for="lastName">Last name</label>
     <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
     <label for="age">Age</label>
-    <input type="number" th:field="*{age}" id="age" placeholder="Age">
-    <input type="submit" value="Create Owner">
+    <input type="number" min="0" th:field="*{age}" id="age" placeholder="Age">
+    <input type="submit" value="Add Owner">
 </form>
 </body>
 </html>

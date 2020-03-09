@@ -5,31 +5,32 @@
     <title>Owners</title>
 </head>
 <body>
-<div th:switch="${owners}">
-    <h2 th:case="null">No owners found!</h2>
-    <div th:case="*">
-        <h2>Owners</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Age</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="owner : ${owners}">
-                <td th:text="${owner.id}"></td>
-                <td th:text="${owner.firstName}"></td>
-                <td th:text="${owner.lastName}"></td>
-                <td th:text="${owner.age}"></td>
-                <td><a th:href="@{owner-delete/{id}(id=${owner.id})}">Delete</a></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <p><a href="/owner-create">Create owner</a></p>
+<div th:if="${owners.isEmpty()}">
+    <h2>No owners found!</h2>
 </div>
+<div th:if="${!owners.isEmpty()}">
+    <h2>Owners</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="owner : ${owners}">
+            <td th:text="${owner.id}"></td>
+            <td th:text="${owner.firstName}"></td>
+            <td th:text="${owner.lastName}"></td>
+            <td th:text="${owner.age}"></td>
+            <td><a th:href="@{owner-delete/{id}(id=${owner.id})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p><a href="/owner-create">Create owner</a></p>
+
 </body>
 </html>

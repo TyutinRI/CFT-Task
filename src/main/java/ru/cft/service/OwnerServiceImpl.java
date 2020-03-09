@@ -22,8 +22,13 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public void addOwner(Owner owner) {
+    public boolean addOwner(Owner owner) {
+        if (!owner.getFirstName().matches("(.*)\\S(.*)")
+                || !owner.getLastName().matches("(.*)\\S(.*)")) {
+            return false;
+        }
         ownerRepository.save(owner);
+        return true;
     }
 
     @Override

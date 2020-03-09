@@ -23,6 +23,9 @@ public class OwnerController {
     @GetMapping("/owners")
     public String showAllOwners(Model model){
         List<Owner> owners = ownerService.getAllOwners();
+        System.out.println("Laalalallalal");
+        System.out.println(owners.isEmpty());
+        System.out.println(owners == null);
         model.addAttribute("owners", owners);
         return "owner-list";
     }
@@ -34,8 +37,23 @@ public class OwnerController {
 
     @PostMapping("/owner-create")
     public String createOwner(Owner owner){
-        ownerService.addOwner(owner);
-        return "redirect:/owners";
+        System.out.println(owner.getFirstName());
+        boolean isAdded = ownerService.addOwner(owner);
+        if(isAdded) {
+            return "redirect:/owners";
+        }else {
+            return "redirect:/owner-create-error";
+        }
+    }
+
+    @GetMapping("/owner-create-error")
+    public String createOwnerErrorForm(){
+        return "owner-create-error";
+    }
+
+    @PostMapping("/owner-create-error")
+    public String createOwnerError(){
+        return "redirect:/owner-create";
     }
 
     @GetMapping("/owner-delete/{id}")

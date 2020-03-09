@@ -8,7 +8,7 @@ import java.util.List;
 public interface OwnerService {
     List<Owner> getAllOwners();
 
-    void addOwner(Owner owner);
+    boolean addOwner(Owner owner);
 
     void deleteOwner(Long id);
 
