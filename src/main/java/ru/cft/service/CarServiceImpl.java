@@ -32,7 +32,12 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void deleteCar(Long id) {
+        carRepository.deleteById(id);
+    }
 
+    @Override
+    public void deleteCarByOwnerId(Long id) {
+        carRepository.deleteByOwnerId(id);
     }
 
     @Override

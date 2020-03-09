@@ -7,16 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.cft.entity.Owner;
+import ru.cft.service.CarService;
 import ru.cft.service.OwnerService;
 
 import java.util.List;
 
 @Controller
 public class OwnerController {
-    private final OwnerService ownerService;
+    private  final CarService carService;
+    private  final OwnerService ownerService;
 
     @Autowired
-    public OwnerController(OwnerService ownerService) {
+    public OwnerController(CarService carService, OwnerService ownerService) {
+        this.carService = carService;
         this.ownerService = ownerService;
     }
 
@@ -67,6 +70,7 @@ public class OwnerController {
 
     @GetMapping("/owner-delete/{id}")
     public String deleteOwner(@PathVariable("id") Long id){
+        carService.deleteCarByOwnerId(id);
         ownerService.deleteOwner(id);
         return "redirect:/owners";
     }
