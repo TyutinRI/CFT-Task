@@ -12,19 +12,19 @@ public class Car {
 
     private String number;
     private LocalDate dateOfProduction;
+    private String carModel;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id")
     private Owner owner;
-    @ManyToOne
-    @JoinColumn(name = "model_id")
-    private CarModel carModel;
+
+
 
     public Car(){
 
     }
 
-    public Car(String number, LocalDate dateOfProduction, Owner owner, CarModel carModel) {
+    public Car(String number, LocalDate dateOfProduction, Owner owner, String carModel) {
         this.number = number;
         this.dateOfProduction = dateOfProduction;
         this.owner = owner;
@@ -63,11 +63,11 @@ public class Car {
         this.owner = owner;
     }
 
-    public CarModel getCarModel() {
+    public String getCarModel() {
         return carModel;
     }
 
-    public void setCarModel(CarModel carModel) {
+    public void setCarModel(String carModel) {
         this.carModel = carModel;
     }
 }
