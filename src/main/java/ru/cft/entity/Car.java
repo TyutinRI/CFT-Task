@@ -2,7 +2,7 @@ package ru.cft.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "cars")
@@ -10,7 +10,6 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     private String number;
 

@@ -8,9 +8,11 @@ import java.util.List;
 public interface OwnerService {
     List<Owner> getAllOwners();
 
+    Owner getById(Long id);
+
     boolean addOwner(Owner owner);
 
     void deleteOwner(Long id);
 
-    Owner findById(Long id);
+
 }

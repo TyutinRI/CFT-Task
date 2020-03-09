@@ -6,6 +6,7 @@ import ru.cft.entity.Car;
 import ru.cft.repository.CarRepository;
 
 import java.util.List;
+
 @Service
 public class CarServiceImpl implements CarService {
     private final CarRepository carRepository;
@@ -20,6 +21,21 @@ public class CarServiceImpl implements CarService {
         return carRepository.findAll();
     }
 
+    @Override
+    public Car getById(Long id) {
+        return carRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Car> getAllCarsByOwnerId(Long id) {
+        return carRepository.findByOwnerId(id);
+    }
+
+    /**
+     * Метод для сохранения {@link Car} в базе данных.
+     * @param car сохраняемый в базе данных {@link Car}
+     * @return {@code true} если строки не пустые и содержат не только пробельные символы.
+     */
     @Override
     public boolean addCar(Car car) {
         if (!car.getNumber().matches("(.*)\\S(.*)")
@@ -38,15 +54,5 @@ public class CarServiceImpl implements CarService {
     @Override
     public void deleteCarByOwnerId(Long id) {
         carRepository.deleteByOwnerId(id);
-    }
-
-    @Override
-    public Car findById(Long id) {
-        return carRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public List<Car> getAllCarsByOwnerId(Long id) {
-        return carRepository.findByOwnerId(id);
     }
 }

@@ -1,7 +1,6 @@
 package ru.cft.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.spel.SpelEvaluationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.thymeleaf.exceptions.TemplateProcessingException;
 import ru.cft.entity.Car;
 import ru.cft.entity.Owner;
 import ru.cft.service.CarService;
@@ -39,6 +37,9 @@ public class CarController {
         return "car-list";
     }
 
+    /**
+     * Метод для получения списка машин конкретного {@link Owner}
+     */
     @GetMapping("/cars-from-owner/{id}")
     public String showAllCarsFromOwner(@PathVariable("id") Long ownerId,Model model){
         List<Car> cars = carService.getAllCarsByOwnerId(ownerId);
@@ -99,7 +100,7 @@ public class CarController {
      */
     @GetMapping("/car-update/{id}")
     public String updateCarForm(@PathVariable("id") Long id, Model model){
-        Car car = carService.findById(id);
+        Car car = carService.getById(id);
         model.addAttribute("machine", car);
         List<Owner> owners = ownerService.getAllOwners();
         model.addAttribute("owners", owners);

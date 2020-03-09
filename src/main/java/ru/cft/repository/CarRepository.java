@@ -11,10 +11,18 @@ import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car, Long> {
 
+    /**
+     * Метод для удаления всех машин с id владельца равным параметру
+     * @param id - id владельца
+     */
     @Query(value = "DELETE FROM cars c WHERE c.owner_id = :id", nativeQuery = true)
     @Modifying
     @Transactional
     void deleteByOwnerId(@Param("id") Long id);
 
+    /**
+     * Метод для получения списка всех машин с id владельца равным параметру
+     * @param id - id владельца
+     */
     List<Car> findByOwnerId(Long id);
 }

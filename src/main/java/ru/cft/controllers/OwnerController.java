@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import ru.cft.entity.Car;
 import ru.cft.entity.Owner;
 import ru.cft.service.CarService;
 import ru.cft.service.OwnerService;
@@ -33,9 +34,12 @@ public class OwnerController {
         return "owner-list";
     }
 
+    /**
+     * Метод для вывода владельца конкретной машины
+     */
     @GetMapping("/owner-of-car/{id}")
     public String showOwnerOfCar (@PathVariable("id") Long id, Model model){
-        Owner owner = ownerService.findById(id);
+        Owner owner = ownerService.getById(id);
         List<Owner> owners = Arrays.asList(owner);
         model.addAttribute("owners", owners);
         return "owner-list-one-car";
@@ -67,7 +71,7 @@ public class OwnerController {
     }
 
     /**
-     * @return веб страницу для добавления {@link Owner} в базу данных
+     * @return веб страницу для добавления {@link Owner} в базу данных при нажатии на соответствующую кнопку
      */
     @PostMapping("/owner-create-error")
     public String createOwnerError(){
@@ -77,6 +81,11 @@ public class OwnerController {
 
 //===================================Mapping for DELETE======================================================
 
+    /**
+     * Метод для удаления {@link Owner} из базы данных. Перед удалением сущности {@link Owner},
+     * удаляет все связанные с ней сущности {@link Car}
+     * @param id
+     */
     @GetMapping("/owner-delete/{id}")
     public String deleteOwner(@PathVariable("id") Long id){
         carService.deleteCarByOwnerId(id);
@@ -91,7 +100,7 @@ public class OwnerController {
      */
     @GetMapping("/owner-update/{id}")
     public String updateOwnerForm(@PathVariable("id") Long id, Model model){
-        Owner owner = ownerService.findById(id);
+        Owner owner = ownerService.getById(id);
         model.addAttribute("owner", owner);
         return "owner-update";
     }

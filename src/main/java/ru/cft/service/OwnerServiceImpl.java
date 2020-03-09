@@ -20,6 +20,11 @@ public class OwnerServiceImpl implements OwnerService {
         return ownerRepository.findAll();
     }
 
+    @Override
+    public Owner getById(Long id) {
+        return ownerRepository.findById(id).orElse(null);
+    }
+
     /**
      * Метод для сохранения {@link Owner} в базе данных.
      * @param owner сохраняемый в базе данных {@link Owner}
@@ -39,11 +44,5 @@ public class OwnerServiceImpl implements OwnerService {
     public void deleteOwner(Long id) {
         ownerRepository.deleteById(id);
     }
-
-    @Override
-    public Owner findById(Long id) {
-        return ownerRepository.findById(id).orElse(null);
-    }
-
 
 }

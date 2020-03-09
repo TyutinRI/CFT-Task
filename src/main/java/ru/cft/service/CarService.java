@@ -10,13 +10,12 @@ public interface CarService {
 
     List<Car> getAllCarsByOwnerId(Long id);
 
+    Car getById(Long id);
+
     boolean addCar(Car car);
 
     void deleteCar(Long id);
 
     void deleteCarByOwnerId(Long id);
-
-    Car findById(Long id);
-
 
 }
