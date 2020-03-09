@@ -2,7 +2,6 @@ package ru.cft.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.cft.entity.Car;
 import ru.cft.entity.Owner;
 import ru.cft.repository.OwnerRepository;
 
@@ -21,6 +20,11 @@ public class OwnerServiceImpl implements OwnerService {
         return ownerRepository.findAll();
     }
 
+    /**
+     * Метод для сохранения {@link Owner} в базе данных.
+     * @param owner сохраняемый в базе данных {@link Owner}
+     * @return {@code true} если строки не пустые и содержат не только пробельные символы.
+     */
     @Override
     public boolean addOwner(Owner owner) {
         if (!owner.getFirstName().matches("(.*)\\S(.*)")
@@ -37,7 +41,9 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public void updateOwner(Owner owner) {
-
+    public Owner findById(Long id) {
+        return ownerRepository.findById(id).orElse(null);
     }
+
+
 }

@@ -12,5 +12,5 @@ public interface OwnerService {
 
     void deleteOwner(Long id);
 
-    void updateOwner(Owner owner);
+    Owner findById(Long id);
 }

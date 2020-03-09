@@ -20,15 +20,16 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
+//===================================Mapping for RETRIEVE======================================================
+
     @GetMapping("/owners")
     public String showAllOwners(Model model){
         List<Owner> owners = ownerService.getAllOwners();
-        System.out.println("Laalalallalal");
-        System.out.println(owners.isEmpty());
-        System.out.println(owners == null);
         model.addAttribute("owners", owners);
         return "owner-list";
     }
+
+//===================================Mapping for CREATE======================================================
 
     @GetMapping("/owner-create")
     public String createOwnerForm(Owner owner){
@@ -46,21 +47,50 @@ public class OwnerController {
         }
     }
 
+    /**
+     * @return веб страницу с сообщением об ошибке, при неверно введенных данных
+     */
     @GetMapping("/owner-create-error")
     public String createOwnerErrorForm(){
         return "owner-create-error";
     }
 
+    /**
+     * @return веб страницу для добавления {@link Owner} в базу данных
+     */
     @PostMapping("/owner-create-error")
     public String createOwnerError(){
         return "redirect:/owner-create";
     }
+
+
+//===================================Mapping for DELETE======================================================
 
     @GetMapping("/owner-delete/{id}")
     public String deleteOwner(@PathVariable("id") Long id){
         ownerService.deleteOwner(id);
         return "redirect:/owners";
     }
+
+//===================================Mapping for UPDATE======================================================
+
+    /**
+     * @return веб страницу для обнавления {@link Owner} в базе данных
+     */
+    @GetMapping("/owner-update/{id}")
+    public String updateOwnerForm(@PathVariable("id") Long id, Model model){
+        Owner owner = ownerService.findById(id);
+        model.addAttribute("owner", owner);
+        return "owner-update";
+    }
+
+    @PostMapping("/owner-update")
+    public String updateOwner(Owner owner){
+        ownerService.addOwner(owner);
+        return "redirect:/owners";
+    }
+
+
 
 
 }

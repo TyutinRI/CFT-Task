@@ -16,7 +16,7 @@
     <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
     <br/>
     <label for="id">Age</label>
-    <input type="number" th:field="*{age}" id="age" placeholder="Age">
+    <input type="number" min="0" th:field="*{age}" id="age" placeholder="Age">
     <br/>
     <input type="submit" value="Update Owner">
 </form>
