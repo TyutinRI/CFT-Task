@@ -10,6 +10,7 @@ import ru.cft.entity.Owner;
 import ru.cft.service.CarService;
 import ru.cft.service.OwnerService;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -30,6 +31,14 @@ public class OwnerController {
         List<Owner> owners = ownerService.getAllOwners();
         model.addAttribute("owners", owners);
         return "owner-list";
+    }
+
+    @GetMapping("/owner-of-car/{id}")
+    public String showOwnerOfCar (@PathVariable("id") Long id, Model model){
+        Owner owner = ownerService.findById(id);
+        List<Owner> owners = Arrays.asList(owner);
+        model.addAttribute("owners", owners);
+        return "owner-list-one-car";
     }
 
 //===================================Mapping for CREATE======================================================

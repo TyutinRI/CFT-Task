@@ -27,14 +27,11 @@
             <td th:text="${car.carModel}"></td>
             <td th:text="${car.dateOfProduction}"></td>
             <td th:text="${car.owner.id}"></td>
-            <td><a th:href="@{car-delete/{id}(id=${car.id})}">Delete</a></td>
-            <td><a th:href="@{car-update/{id}(id=${car.id})}">Edit</a></td>
-            <td><a th:href="@{owner-of-car/{id}(id=${car.owner.id})}">Show owner</a></td>
         </tr>
         </tbody>
     </table>
 </div>
-<p><a href="/car-create">Add car</a></p>
 <p><a href="/owners">Show owner's list</a></p>
+<p><a href="/cars">Show car's list</a></p>
 </body>
 </html>

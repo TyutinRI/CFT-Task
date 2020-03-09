@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import ru.cft.entity.Car;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car, Long> {
 
@@ -14,4 +15,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     @Modifying
     @Transactional
     void deleteByOwnerId(@Param("id") Long id);
+
+    List<Car> findByOwnerId(Long id);
 }

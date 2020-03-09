@@ -8,6 +8,8 @@ public interface CarService {
 
     List<Car> getAllCars();
 
+    List<Car> getAllCarsByOwnerId(Long id);
+
     boolean addCar(Car car);
 
     void deleteCar(Long id);
@@ -15,4 +17,6 @@ public interface CarService {
     void deleteCarByOwnerId(Long id);
 
     Car findById(Long id);
+
+
 }

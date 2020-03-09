@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Add car</title>
+<meta charset="UTF-8">
+<title>Update car</title>
 </head>
 <body>
-<form action="#" th:action="@{/car-create}" th:object="${car}" method="post">
+<form action="#" th:action="@{/car-update}" th:object="${machine}" method="post">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
     <label for="carModel">Model</label>
     <input type="text" th:field="*{carModel}" id="carModel" placeholder="Model">
+    <br/>
     <label for="number">Number</label>
     <input type="text" th:field="*{number}" id="number" placeholder="Number">
+    <br/>
     <label for="dateOfProduction">Production Date</label>
     <input type="date" th:field="*{dateOfProduction}" id="dateOfProduction"  placeholder="Production Date">
+    <br/>
     <label for="owner">Owner</label>
 
     <select th:field="*{owner}" id="owner" placeholder="Owner">
@@ -19,8 +25,8 @@
                 th:text="${owner.id} +' '+ ${owner.firstName} +' '+ ${owner.lastName}">
         </option>
     </select>
-
-    <input type="submit" value="Add Car">
+    <br/>
+    <input type="submit" value="Update Car">
 </form>
 </body>
 </html>
