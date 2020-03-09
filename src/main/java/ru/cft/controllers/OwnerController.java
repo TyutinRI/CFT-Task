@@ -38,7 +38,6 @@ public class OwnerController {
 
     @PostMapping("/owner-create")
     public String createOwner(Owner owner){
-        System.out.println(owner.getFirstName());
         boolean isAdded = ownerService.addOwner(owner);
         if(isAdded) {
             return "redirect:/owners";

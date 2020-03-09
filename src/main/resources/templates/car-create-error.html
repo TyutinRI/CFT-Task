@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Error!</title>
+</head>
+<body>
+    <h2>Error!</h2>
+    <h3>Number, Production Date and Model fields must not be empty</h3>
+    <h3>Number and Model fields must not contain only white space characters</h3>
+    <form action="#" th:action="@{/car-create-error}" method="post">
+        <input type="submit" value="Add Car">
+    </form>
+</body>
+</html>

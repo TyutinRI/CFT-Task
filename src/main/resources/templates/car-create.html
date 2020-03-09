@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add car</title>
+</head>
+<body>
+<form action="#" th:action="@{/car-create}" th:object="${car}" method="post">
+    <label for="carModel">Model</label>
+    <input type="text" th:field="*{carModel}" id="carModel" placeholder="Model">
+    <label for="number">Number</label>
+    <input type="text" th:field="*{number}" id="number" placeholder="Number">
+    <label for="dateOfProduction">Production Date</label>
+    <input type="date" value="2000-01-01"
+           th:field="*{dateOfProduction}" id="dateOfProduction"  placeholder="Production Date">
+    <label for="owner">Owner</label>
+
+    <select th:field="*{owner}" id="owner" placeholder="Owner">
+        <option th:each="owner : ${owners}" th:value="${owner.id}"
+                th:text="${owner.id + owner.firstName + owner.lastName}">
+        </option>
+    </select>
+
+    <input type="submit" value="Add Car">
+</form>
+</body>
+</html>

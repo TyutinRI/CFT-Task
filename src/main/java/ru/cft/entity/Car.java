@@ -1,6 +1,7 @@
 package ru.cft.entity;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDate;
 
 @Entity
@@ -10,11 +11,14 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     private String number;
-    private LocalDate dateOfProduction;
+
+    private Date dateOfProduction;
+
     private String carModel;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
@@ -24,7 +28,7 @@ public class Car {
 
     }
 
-    public Car(String number, LocalDate dateOfProduction, Owner owner, String carModel) {
+    public Car(String number, Date dateOfProduction, Owner owner, String carModel) {
         this.number = number;
         this.dateOfProduction = dateOfProduction;
         this.owner = owner;
@@ -47,11 +51,11 @@ public class Car {
         this.number = number;
     }
 
-    public LocalDate getDateOfProduction() {
+    public Date getDateOfProduction() {
         return dateOfProduction;
     }
 
-    public void setDateOfProduction(LocalDate dateOfProduction) {
+    public void setDateOfProduction(Date dateOfProduction) {
         this.dateOfProduction = dateOfProduction;
     }
 
@@ -69,5 +73,16 @@ public class Car {
 
     public void setCarModel(String carModel) {
         this.carModel = carModel;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                ", dateOfProduction=" + dateOfProduction +
+                ", carModel='" + carModel + '\'' +
+                ", owner=" + owner +
+                '}';
     }
 }
